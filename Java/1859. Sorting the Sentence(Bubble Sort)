@@ -1,0 +1,29 @@
+class Solution {
+    public String sortSentence(String s) {
+        String[] words = s.split(" ");
+        for(int i=0;i<words.length-1;i++){
+            boolean isSorted=true;
+            for(int j=0; j<words.length-1-i;j++){
+                char a = words[j].charAt(words[j].length() - 1);
+                char b = words[j + 1].charAt(words[j + 1].length() - 1);
+                if(a>b){
+                    String temp = words[j];
+                    words[j]=words[j+1];
+                    words[j+1]=temp;
+                    isSorted=false;
+                }
+            }
+            if(isSorted){
+                break;
+            }
+        }
+        StringBuilder m = new StringBuilder();
+        for(int i=0;i<words.length; i++){
+            if(i>0){
+                m.append(" ");
+            }
+            m.append(words[i].substring(0, words[i].length() - 1));
+        }
+        return m.toString();
+    }
+}
