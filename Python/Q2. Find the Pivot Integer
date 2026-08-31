@@ -1,0 +1,19 @@
+class Solution:
+    def pivotInteger(self, n: int) -> int:
+        i=0
+        j=n
+        diff=n
+        while(i<=j):
+            if diff>0:
+                diff-=i
+                i+=1
+            else:
+                j-=1
+                diff+=j
+        if diff!=0:
+            return -1
+        return j
+
+        
+
+        
