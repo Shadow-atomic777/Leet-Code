@@ -1,0 +1,17 @@
+def judgeCircle(self, moves: str) -> bool:
+        dict= {
+            "U":1,
+            "L":2,
+            "D":-1,
+            "R":-2
+        }
+        ans1=0
+        ans2=0
+        for i in moves:
+            if i=="L" or i=="R":
+                ans1+=dict[i]
+            if i=="U" or i=="D":
+                ans2+=dict[i]
+        if ans1==0 and ans2==0:
+            return True
+        return False
