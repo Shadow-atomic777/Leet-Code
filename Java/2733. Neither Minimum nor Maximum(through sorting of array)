@@ -1,0 +1,28 @@
+class Solution {
+    public int findNonMinOrMax(int[] nums) {
+        int[] count= new int[101];
+        if(nums.length<=2){
+            return -1;
+        }
+        for(int i:nums){
+            count[i]++;
+        }
+        int j=0;
+        for(int i=0;i<count.length;i++){
+            
+            while(count[i]>0){
+                nums[j]=i;
+                count[i]--;
+                j++;
+            }
+        }
+        int ans=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[0]<nums[i]&& nums[i]<nums[nums.length-1]){
+                ans= nums[i];
+                break;
+            }
+        }
+        return ans;
+    }
+}
