@@ -1,0 +1,24 @@
+class Solution {
+    public int findMaxLength(int[] nums) {
+        HashMap<Integer, Integer> ind = new HashMap<>();
+        ind.put(0,-1);
+        int prefix=0;
+        int len =0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]==0){
+                prefix--;
+            }
+            else{
+                prefix++;
+            }
+            if(ind.containsKey(prefix)){
+                int l = i- ind.get(prefix);
+                len= Math.max(len,l);
+            }
+            else{
+                ind.put(prefix,i);
+            }
+        }
+        return len;
+    }
+}
