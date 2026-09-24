@@ -1,0 +1,28 @@
+class Solution {
+    public String simplifyPath(String path) {
+        Deque<String> st= new ArrayDeque<>();
+        String[] a= path.split("/");
+        for(String s: a){
+            if(s.equals("") || s.equals("."))  continue;
+            if(s.equals("..")){
+                if(st.isEmpty()) continue;
+                else st.pop();
+            }
+            else{
+                st.push(s);
+            }
+        }
+        int size= st.size();
+        int j=0;
+        while(!st.isEmpty()){
+            
+            a[j]=st.pop();
+            j++;
+        } 
+        StringBuilder ans = new StringBuilder();
+        for(int i= size-1; i>=0; i--){
+            ans.append("/"+a[i]);
+        }
+        return ans.length() == 0 ? "/" : ans.toString();
+    }
+}
