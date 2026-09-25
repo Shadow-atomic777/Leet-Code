@@ -1,0 +1,27 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Deque<String> s = new ArrayDeque<>();
+        for(String num : tokens){
+            if( !num.equals("+") && !num.equals("-") && !num.equals("*") && !num.equals("/") ){
+                s.push(num);
+            } 
+            else{
+                int v1= Integer.parseInt(s.pop());
+                int v2= Integer.parseInt(s.pop());
+                if(num.equals("+")){
+                    s.push(Integer.toString(v2+v1));
+                }
+                else if(num.equals("-")){
+                    s.push(Integer.toString(v2-v1));
+                }
+                else if(num.equals("*")){
+                    s.push(Integer.toString(v1*v2));
+                }
+                else{
+                    s.push(Integer.toString(v2/v1));
+                }
+            }
+        }
+        return Integer.parseInt(s.peek());
+    }
+}
