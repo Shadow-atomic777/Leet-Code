@@ -1,0 +1,29 @@
+class Solution {
+    public String decodeString(String s) {
+        Deque<Integer> counts = new ArrayDeque<>();
+        Deque<String> strings = new ArrayDeque<>();
+        String curr = "";
+        int num=0;
+        for(char c : s.toCharArray()){
+            
+            if(Character.isDigit(c)){
+                num = num*10+ (c-'0');
+            }
+            else if(c=='['){
+                counts.push(num);
+                strings.push(curr);
+                num=0;
+                curr="";
+            }
+            else if(c==']'){
+                String p= strings.pop();
+                curr = p+ curr.repeat(counts.pop());
+            }
+            else {
+                curr += c;
+            }
+
+        }
+        return curr;
+    }
+}
